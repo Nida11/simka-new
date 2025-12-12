@@ -19,10 +19,18 @@ switch (DB_ENVIRONMENT) {
 
 $active_group  = "default";
 $active_record = TRUE;
+
 $db['default']['hostname'] = $hostname;
 $db['default']['username'] = $username;
 $db['default']['password'] = $password;
 $db['default']['database'] = $database;
+
+// $db['default']['hostname'] = 'localhost';
+// $db['default']['username'] = 'root';
+// $db['default']['password'] = '';
+// $db['default']['database'] = 'simka';
+
+
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = FALSE;

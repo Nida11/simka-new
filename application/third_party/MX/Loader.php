@@ -99,27 +99,48 @@ class MX_Loader extends CI_Loader
 	}
 
 	/** Load a module helper **/
-	public function helper($helper) {
-		
-		if (is_array($helper)) return $this->helpers($helper);
-		
-		if (isset($this->_ci_helpers[$helper]))	return;
+	public function helper($helpers = array())
+{
+    if (is_array($helpers))
+    {
+        // Loop jika ada banyak helper
+        foreach ($helpers as $helper)
+        {
+            $this->helper($helper);
+        }
+        return;
+    }
 
-		list($path, $_helper) = Modules::find($helper.'_helper', $this->_module, 'helpers/');
+    // Kalau helper sudah pernah di-load, skip
+    if (isset($this->_ci_helpers[$helpers])) {
+        return;
+    }
 
-		if ($path === FALSE) return parent::helper($helper);
+    // Cari helper di module
+    list($path, $file) = Modules::find($helpers . '_helper', $this->_module, 'helpers/');
 
-		Modules::load_file($_helper, $path);
-		$this->_ci_helpers[$_helper] = TRUE;
-	}
+    if ($path === FALSE) {
+        // fallback ke CI default
+        return parent::helper($helpers);
+    }
+
+    // Load helper file
+    Modules::load_file($file, $path);
+
+    // Mark sebagai loaded
+    $this->_ci_helpers[$helpers] = TRUE;
+}
+
 
 	/** Load an array of helpers **/
-	public function helpers($helpers) {
+	public function helpers($helpers = array())
+ {
 		foreach ($helpers as $_helper) $this->helper($_helper);	
 	}
 
 	/** Load a module language file **/
-	public function language($langfile, $idiom = '', $return = FALSE, $add_suffix = TRUE, $alt_path = '') {
+	public function language($file = array(), $lang = '')
+ {
 		return CI::$APP->lang->load($langfile, $idiom, $return, $add_suffix, $alt_path, $this->_module);
 	}
 	
@@ -265,7 +286,7 @@ class MX_Loader extends CI_Loader
 
 	public function _ci_is_instance() {}
 
-	public function _ci_get_component($component) {
+	public function &_ci_get_component($component) {
 		return CI::$APP->$component;
 	} 
 
