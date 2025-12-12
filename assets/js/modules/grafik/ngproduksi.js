@@ -83,7 +83,9 @@ app.controller('produksi_controller', function($scope, $rootScope, $http){
 				data: {
 					sync_tahun: $scope.sync_tahun,
 					sync_bulan1: $scope.sync_bulan1,
-					sync_bulan2: $scope.sync_bulan2
+					sync_bulan2: $scope.sync_bulan2,
+					kd_mohon: $scope.kd_mohon
+
 					// sync_bulan: $scope.sync_bulan,
 					// sync_tanggal1: $scope.sync_tanggal1,
 					// sync_tanggal2: $scope.sync_tanggal2
