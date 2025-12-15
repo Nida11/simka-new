@@ -16,6 +16,42 @@ app.controller('produksi_controller', function($scope, $rootScope, $http){
 		// if ("<?php echo $this->session->userdata('is_admin')?>") {
 		// 	$scope.sync_user = "<?php echo $var ?>";
 		// }
+
+
+		//MEMANGGIL KERAPIHAN KOLOM NAMA MOHON
+		setTimeout(function () {
+
+		  var $el = $('#dt_mohon .select2');
+
+		  if ($el.length) {
+		    $el.select2({
+		      width: 'resolve',
+		      dropdownAutoWidth: false,
+			
+		      // ⬇️ LIST DROPDOWN TETAP PANJANG
+		      templateResult: function (data) {
+		        return data.text;
+		      },
+		  
+		      // ⬇️ YANG DITAMPILKAN SETELAH DIPILIH
+		      templateSelection: function (data) {
+		        if (!data.id) return data.text;
+			
+		        // ambil KODE sebelum tanda " - "
+		        return data.text.split(' -> ')[0];
+		      }
+		    });
+		
+		    // sinkron ke Angular
+		    $el.on('change', function () {
+		      $scope.$applyAsync(function () {
+		        $scope.kd_mohon = $el.val();
+		      });
+		    });
+		  }
+	  
+		}, 0);
+
 		no_need_waiting();
 		$(document).find('#dt_bulan').hide();
 		$(document).find('#dt_tgl1').hide();

@@ -1,3 +1,5 @@
+
+
 <div data-ng-app='simka_bapenda' data-ng-controller='produksi_controller' data-ng-init='initialForm(); base_url="<?php echo base_url(); ?>"; is_admin="<?php echo $this->session->userdata('is_admin') ?>"'>
 	<div class='panel panel-body'>
 		<div class="col-lg-12">
@@ -60,7 +62,7 @@
 	<?php
      $kode = $this->db->get('tkd_mohon')->result();
      ?>
-	<div class="col-lg-4 col-md-4 col-sm-12" id="dt_mohon">
+	<!-- <div class="col-lg-4 col-md-4 col-sm-12" id="dt_mohon">
 		<div class="mrgbt10">
 			<a>NAMA MOHON</a>
 			<div class="input-group">
@@ -74,7 +76,31 @@
 				</select>
 			</div>
 		</div>
-	</div>
+	</div> -->
+	<div class="col-lg-4 col-md-4 col-sm-12" id="dt_mohon">
+  <div class="mrgbt10">
+    <a>NAMA MOHON</a>
+    <div class="input-group">
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-user"></span>
+      </span>
+
+      <select class="form-control select2"
+              name="kd_mohon"
+              data-ng-model="kd_mohon"
+              style="width:100%">
+        <option value="">-- Pilih Mohon --</option>
+        <?php foreach ($kode as $k): ?>
+          <option value="<?= $k->kd_mohon ?>">
+            <?= $k->kohir ?> - <?= $k->nm_mohon ?>
+          </option>
+        <?php endforeach; ?>
+      </select>
+
+    </div>
+  </div>
+</div>
+
 </div>
 
 			<div class='mrgbt10'>
