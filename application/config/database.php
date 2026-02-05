@@ -1,34 +1,34 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-switch (DB_ENVIRONMENT) {
-	case 'development':
-		$hostname = '15.1.1.77';
-		$username = 'simka';
-		$password = 'Lampu2014';
-		$database = 'bapenda_jabar_dev';
-		$port = '3306';
-		break;
-	case 'production': case 'debug':
-		$hostname = '15.1.1.77';
-		$username = 'simka';
-		$password = 'Lampu2014';
-		$database = 'bapenda_jabar_dev';
-		$port = '3306';
-		break;
-}
+// switch (DB_ENVIRONMENT) {
+// 	case 'development':
+// 		$hostname = '15.1.1.77';
+// 		$username = 'simka';
+// 		$password = 'Lampu2014';
+// 		$database = 'bapenda_jabar_dev';
+// 		$port = '3306';
+// 		break;
+// 	case 'production': case 'debug':
+// 		$hostname = '15.1.1.77';
+// 		$username = 'simka';
+// 		$password = 'Lampu2014';
+// 		$database = 'bapenda_jabar_dev';
+// 		$port = '3306';
+// 		break;
+// }
 
 $active_group  = "default";
 $active_record = TRUE;
 
-$db['default']['hostname'] = $hostname;
-$db['default']['username'] = $username;
-$db['default']['password'] = $password;
-$db['default']['database'] = $database;
+// $db['default']['hostname'] = $hostname;
+// $db['default']['username'] = $username;
+// $db['default']['password'] = $password;
+// $db['default']['database'] = $database;
 
-// $db['default']['hostname'] = 'localhost';
-// $db['default']['username'] = 'root';
-// $db['default']['password'] = '';
-// $db['default']['database'] = 'simka';
+$db['default']['hostname'] = '15.1.1.100';
+$db['default']['username'] = 'simka';
+$db['default']['password'] = 'Lampu2016';
+$db['default']['database'] = 'db_simka';
 
 
 $db['default']['dbdriver'] = 'mysqli';
